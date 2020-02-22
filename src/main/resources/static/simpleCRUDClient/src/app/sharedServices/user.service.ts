@@ -15,6 +15,7 @@ export class UserService {
   private baseUrl:string='http://localhost:8080/api';
   // private headers = new Headers({'Content-Type':'application/json'});
   // private options = new RequestOptions({headers:this.headers});
+  private user:User;
 
   constructor(private _http:HttpClient) { }
 
@@ -24,27 +25,34 @@ export class UserService {
   }
 
   getUser(id:Number){
-    return this._http.get(this.baseUrl + '/user'+id).pipe(map((resp:Response)=>resp.json()));
+    return this._http.get(this.baseUrl + '/user/'+id);
+    // .pipe(map((resp:Response)=>resp.json()));
     // .catch(this.errorHandler);
   }
 
   deleteUser(id:Number){
-    return this._http.delete(this.baseUrl + '/user'+id).pipe(map((resp:Response)=>resp.json()));
+    return this._http.delete(this.baseUrl + '/user/'+id);
     // .catch(this.errorHandler);
   }
 
   createUser(user:User){
-    return this._http.post(this.baseUrl + '/users',JSON.stringify(user)).pipe(map((resp:Response)=>resp.json()));
+    return this._http.post(this.baseUrl + '/user',JSON.stringify(user));
     // .catch(this.errorHandler);
   }
 
   updateUser(user:User){
-    return this._http.put(this.baseUrl + '/users',JSON.stringify(user)).pipe(map((resp:Response)=>resp.json()));
+    return this._http.put(this.baseUrl + '/user',JSON.stringify(user));
     // .catch(this.errorHandler);
   }
 
   errorHandler(error:Response){
     return Observable.throw(error||"Server Error");
+  }
 
+  setter(user:User){
+    this.user=user;
+  }
+  getter(){
+    return this.user;
   }
 }

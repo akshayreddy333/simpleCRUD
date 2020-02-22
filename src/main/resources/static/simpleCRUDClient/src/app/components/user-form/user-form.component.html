@@ -1,1 +1,16 @@
-<p>user-form works!</p>
+<div class="container">
+    <form (ngSubmit)="processForm()">
+        <div class="form group">
+            <input type="text" name="id" class="form-control" [(ngModel)]="user.id">
+        </div>
+        <div class="form group">
+            <label for="fName">First Name</label>
+            <input type="text" name="fName" class="form-control" [(ngModel)]="user.fName">
+        </div>
+        <div class="form group">
+            <label for="lName">Last Name</label>
+            <input type="text" name="lName" class="form-control" [(ngModel)]="user.lName">
+        </div>
+        <input type="submit" value="save" class="btn btn-success">
+    </form>
+</div>
